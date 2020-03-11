@@ -7,8 +7,23 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-input [formControl]="userForm.controls['username']" placeholder="Username"></ion-input>
+  <ion-input [formControl]="userForm.controls['email']" placeholder="Email"></ion-input>
+  <ion-input [formControl]="userForm.controls['password_hash']" placeholder="Password"></ion-input>
+  <ion-button (click)="submit()">SUBMIT</ion-button>
+  <!-- <ion-button (click)="onDelete()">DELETE</ion-button> -->
+
+  <ion-list>
+    <ion-item *ngFor="let users of users$ | async">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Username: {{users.username}}</p>
+            <p>email: {{users.email}}</p>
+            <p>password_hash: {{users.password_hash}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
